@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="todo-app">
+            <h2>TO-DO List </h2>
+
+            <div class="row">
+                <input type="text" id="box" placeholder="Add your text">
+                <button onclick="AddTask()">Add</button>
+            </div>
+            <ul id="list">
+
+                <!-- <li class="cheked" >Task 1
+                  
+                </li>
+                <li>Task 2
+                   
+                </li>
+
+
+                <li>Task 3
+                   
+                </li> -->
+
+
+
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        const inputBox = document.getElementById("box")
+        const listItem = document.getElementById("list")
+
+
+        function AddTask() {
+            if (inputBox.value == "") {
+                alert("you must write something")
+            } else {
+                let li = document.createElement("li")
+                li.innerHTML = inputBox.value;
+                listItem.appendChild(li)
+
+                let span = document.createElement("span")
+                span.innerHTML = "\u00d7"
+                li.appendChild(span)
+            }
+            inputBox.value = ""
+            saveData()
+
+        }
+
+        listItem.addEventListener("click", function (e) {
+            if (e.target.tagName === 'LI') {
+                e.target.classList.toggle("cheked")
+                saveData()
+            }
+            else if (e.target.tagName === "SPAN") {
+                e.target.parentElement.remove()
+                saveData()
+            }
+        }, false)
+      
+        function saveData(){
+            localStorage.setItem("data", list.innerHTML)
+        }
+        function showTask(){
+            list.innerHTML = localStorage.getItem("data")
+        }
+        showTask()
+
+
+    </script>
+
+</body>
+
+</html>
